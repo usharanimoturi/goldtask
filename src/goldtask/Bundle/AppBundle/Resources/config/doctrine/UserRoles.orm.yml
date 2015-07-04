@@ -1,0 +1,38 @@
+goldtask\Bundle\AppBundle\Entity\UserRoles:
+    type: entity
+    table: user_roles
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        parentRoleId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: parent_role_id
+        isParent:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_parent
+        roleName:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: role_name
+        slug:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

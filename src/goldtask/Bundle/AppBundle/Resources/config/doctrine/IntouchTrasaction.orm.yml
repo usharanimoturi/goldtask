@@ -1,0 +1,119 @@
+goldtask\Bundle\AppBundle\Entity\goldtaskTrasaction:
+    type: entity
+    table: goldtask_trasaction
+    indexes:
+        assigned_to:
+            columns:
+                - assigned_to
+        appointment:
+            columns:
+                - missed_appointment
+                - outstanding_treatment
+                - outstanding_balance
+        inoffi:
+            columns:
+                - offices_id
+                - pat_id
+        offices:
+            columns:
+                - offices_id
+    uniqueConstraints:
+        unoffi:
+            columns:
+                - offices_id
+                - pat_id
+                - schedule_date
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        officesId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: offices_id
+        patId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: pat_id
+        scheduleDate:
+            type: date
+            nullable: true
+            comment: ''
+            column: schedule_date
+        privacynote:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        assignedTo:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: assigned_to
+        missedAppointment:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: missed_appointment
+        outstandingTreatment:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: outstanding_treatment
+        outstandingBalance:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: outstanding_balance
+        rescheduleDate:
+            type: date
+            nullable: true
+            comment: ''
+            column: reschedule_date
+        rescheduleTime:
+            type: time
+            nullable: true
+            comment: ''
+            column: reschedule_time
+        callStatus:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: call_status
+        freeze:
+            type: boolean
+            nullable: true
+            comment: ''
+        cdate:
+            type: datetime
+            nullable: true
+            comment: ''
+        uid:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        udate:
+            type: datetime
+            nullable: true
+            comment: ''
+        assignedDate:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: assigned_date
+    lifecycleCallbacks: {  }

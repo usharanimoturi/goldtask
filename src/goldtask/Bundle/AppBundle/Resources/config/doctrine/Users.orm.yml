@@ -1,0 +1,85 @@
+goldtask\Bundle\AppBundle\Entity\Users:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        password:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            comment: ''
+        firstName:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: last_name
+        email:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        mobile:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        address:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            comment: ''
+        createdBy:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: created_by
+        createdOn:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_on
+        modifiedBy:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: modified_by
+        modifiedOn:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: modified_on
+        isActive:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_active
+    lifecycleCallbacks: {  }

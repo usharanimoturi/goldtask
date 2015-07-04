@@ -1,0 +1,9 @@
+#dentrix_login:
+    #resource: "@DentrixLoginBundle/Resources/config/routing.yml"
+    #prefix:   /
+#user_reg:
+    #resource: "@UserRegBundle/Resources/config/routing.yml"
+    #prefix:   /Reg
+goldtask_app:
+    resource: "@goldtaskAppBundle/Resources/config/routing.yml"
+    prefix:   /

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <title>{% block title %}Jewel Street:HOME{% endblock %}</title>
+        {% stylesheets 'bundles/goldtaskapp/css/bootstrap.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}       
+        {% stylesheets 'bundles/goldtaskapp/css/font-awesome.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %} 
+        {% stylesheets 'bundles/goldtaskapp/css/responsive.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/animate.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %} 
+        {% stylesheets 'bundles/goldtaskapp/css/AdminLTE.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/style.css' filter="cssrewrite" %}			
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% javascripts 'bundles/goldtaskapp/js/jquery.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}      
+        {% javascripts 'bundles/goldtaskapp/js/bootstrap.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/morris.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/owl.carousel.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        
+        <script>jQuery.noConflict();</script>
+    <style>
+ .wrap ul li{
+     background-color: transparent !important;
+     color:#000 !important;
+ }
+ .add a{
+     background-color:rgb(50, 133, 209) !important;
+     color:#fff !important;
+ }
+ body > .header .navbar .nav > li > a > .label {
+      position:static !important;
+      font-size:15px !important;
+ }
+</style>   
+    {% block jsscript %}{% endblock %}
+</head>
+<body class="pace-done skin-blue">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="{{ app.request.getSchemeAndHttpHost() }}/goldtask" class="logo">Jewel Street</a>			      
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="{{ app.request.getSchemeAndHttpHost() }}/goldtask" class="navbar-btn sidebar-toggle"><i class="fa fa-home"></i></a>
+            <a href="{{ path('about') }}" class="navbar-btn sidebar-toggle">About</a>           
+            <a href="{{ path('news') }}" class="navbar-btn sidebar-toggle">News</a>
+            <a href="{{ path('contact') }}" class="navbar-btn sidebar-toggle">Contact</a>
+            <!-- Sidebar toggle button-->               
+            <div class="navbar-right">                
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    {% if app.session.get('username') != '' %}
+                    <li class="dropdown messages-menu">
+                        {% if app.session.get('userroleid')==1 %}
+                        <a href="{{ path('goldtaskReportPatients') }}" class="dropdown-toggle">
+                            <i class="fa fa-globe"></i>
+                            <span class="label label-success">goldtask Report</span>
+                        </a>
+                         {% endif %}
+                        {% if app.session.get('userroleid')==2 or app.session.get('userroleid')==3 or app.session.get('userroleid')==4 or app.session.get('userroleid')==5 %}
+                        <a href="{{ path('goldtaskReportPatients') }}" class="dropdown-toggle">
+                            <i class="fa fa-globe"></i>
+                            <span class="label label-success">goldtask Report</span>
+                        </a>
+                         {% endif %}
+                    </li>
+                    {% endif %}
+                    <li class="dropdown user user-menu">							
+                        {% if app.session.get('username') == '' %}							
+                            <a href="{{ path('login') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>Login<i class="caret"></i></span>
+                            </a>								
+                        {% endif %}
+                        {% if app.session.get('username') != '' %}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>{{ app.session.get('username') }}<i class="caret"></i></span>
+                            </a>						
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    {% image 'bundles/goldtaskapp/images/avatar6.jpg' output='/images/avatar6.jpg' %}
+                                    <a href="{{ path('changepassword') }}"><img src="{{ asset_url }}" alt="Jewel Street" title="Jewel Street" class="img-circle" width="100" /></a>
+                                        {% endimage %}											
+                                    <p>
+                                        {{ app.session.get('user_name') }} - {{ app.session.get('userRoleName') }} 
+                                        <small>Member since - {{ app.session.get('userCreatedDate') }}</small>
+                                    </p>
+                                </li> 
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="col-xs-12 text-center">	
+                                        <a href="{{ path('changepassword') }}">Change Password</a>
+                                    </div>																			
+                                </li>									
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{ path('myprofile') }}" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{{ path('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="content">
+        {% block top %}{% endblock %}
+        <!-- Left side column. contains the logo and sidebar -->
+      
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <!--<div class="container"> -->
+        {% block body %}{% endblock %}                 
+    </div><!-- /.right-side -->
+</div><!-- ./wrapper -->
+<div class="footer">
+    <div class="wrap">
+        <div class="footer-grids">
+            <div class="footer-grid">
+                <h4>Services</h4>
+						<ul>
+							<li><a href="#">Contact Customer Service</a></li>
+							<li><a href="#">Free Delivery over $150</a></li>
+							<li><a href="#">View your Wishlist</a></li>
+							<li><a href="#">Ring Size Guide</a></li>
+							<li><a href="#">Returns</a></li>
+						</ul>
+            </div>
+            <div class="footer-grid">
+                <h4>Information (FAQ)</h4>
+						<ul>
+							<li><a href="#">Gift certificates</a></li>
+							<li><a href="#">Jewellery care guide</a></li>
+							<li><a href="#">International customers</a></li>
+							<li><a href="#">Wholesale enquires</a></li>
+						</ul>
+            </div>
+            <div class="footer-grid">
+                <h4>More details</h4>
+						<ul>
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terms & COndition</a></li>
+							<li><a href="#">Secure payment</a></li>
+							<li><a href="#">Site map</a></li>
+						</ul>
+            </div>
+            <div class="footer-grid">
+                <h4>Contact us</h4>
+						<ul>
+							<li><span class="c-icon"> </span>Jewel Street  international Pty LTD</li>
+							<li><span class="c-icon1"> </span><a href="#">info@jewelstreet.com.au</a></li>
+							<li><span class="c-icon2"> </span>LONDON  (09) 9209 9280</li>
+						</ul>
+						<ul class="social-icons">
+							<li><a href="#"><span class="facebook"> </span></a></li>
+							<li><a href="#"><span class="twitter"> </span></a></li>
+							<li><a href="#"><span class="thumb"> </span></a></li>
+						</ul>
+            </div>
+            <div class="clear"> </div>
+        </div>
+        <div class="clear"> </div>				
+        <div class="copy-tight">
+            <p>Design & Developed by <a href="{{ app.request.getSchemeAndHttpHost() }}/goldtask/web/app_dev.php">Jewel Street</a></p>
+        </div>				
+    </div>
+</div>
+<!-- add new calendar event modal -->
+</body>
+</html>                        
+                        
+                        
+                        
+                        

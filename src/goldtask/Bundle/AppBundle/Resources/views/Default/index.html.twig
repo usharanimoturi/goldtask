@@ -1,0 +1,171 @@
+{% extends '::base.html.twig' %} 
+{% block top %}
+    <section id="home">
+        <!-- Carousel -->
+        <div id="main-slide" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#main-slide" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slide" data-slide-to="1"></li>
+                <li data-target="#main-slide" data-slide-to="2"></li>					
+            </ol>
+            <!--/ Indicators end-->
+            <!-- Carousel inner -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    {% image 'bundles/goldtaskapp/images/slider1.jpg' output='/images/slider1.jpg' %}
+                    <img src="{{ asset_url }}" alt="Jewel Street" title="slider" class="img-responsive" />
+                    {% endimage %}                       
+                    <div class="slider-content">
+                        <div class="col-md-12 text-center">								
+                            <h2 class="animated2 white">								  
+                                <span>Welcome to <strong>Jewel Street</strong></span>
+                            </h2>
+                            <h3 class="animated3 white">
+                                <span>The ultimate aim of your business</span>
+                            </h3>                               
+                        </div>
+                    </div>
+                </div>
+                <!--/ Carousel item end -->
+                <div class="item">
+                    {% image 'bundles/goldtaskapp/images/slider2.jpg' output='/images/slider2.jpg' %}
+                    <img src="{{ asset_url }}" alt="Jewel Street" title="slider" class="img-responsive" />
+                    {% endimage %} 
+                    <div class="slider-content">
+                        <div class="col-md-12 text-center">
+                            <h2 class="animated4 white">
+                                <span><strong>Jewel Street</strong> for the highest</span>
+                            </h2>
+                            <h3 class="animated5 white">
+                                <span>The Key of your Success</span>
+                            </h3>                                
+                        </div>
+                    </div>
+                </div>
+                <!--/ Carousel item end -->
+                <div class="item">
+                    {% image 'bundles/goldtaskapp/images/slider3.jpg' output='/images/slider3.jpg' %}
+                    <img src="{{ asset_url }}" alt="Jewel Street" title="slider" class="img-responsive" />
+                    {% endimage %} 
+                    <div class="slider-content">
+                        <div class="col-md-12 text-center">
+                            <h2 class="animated7 white">
+                                <span>The way of <strong>Success</strong></span>
+                            </h2>
+                            <h3 class="animated8 white">
+                                <span>Why you are waiting</span>
+                            </h3>	                               
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <!-- Carousel inner end-->
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#main-slide" data-slide="prev">
+                <span><i class="fa fa-angle-left"></i></span>
+            </a>
+            <a class="right carousel-control" href="#main-slide" data-slide="next">
+                <span><i class="fa fa-angle-right"></i></span>
+            </a>
+        </div>
+        <!-- /carousel -->
+    </section>
+
+{% endblock %}
+{% block body %}	 
+    <div class="content-top-grids">
+        <div class="wrap">
+            <div class="content-top-grid">
+                <div class="content-top-grid-header">
+                    <div class="content-top-grid-pic">
+                        {% image 'bundles/goldtaskapp/images/iteam1.jpg' output='/images/iteam1.jpg' %}
+                        <a href="#"><img src="{{ asset_url }}" alt="Jewel Street" title="Timer" /></a>
+                            {% endimage %}						
+                    </div>
+                    <div class="content-top-grid-title">
+                        
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                
+                <div class="clear"> </div>
+            </div>
+            <div class="content-top-grid">
+                <div class="content-top-grid-header">
+                    <div class="content-top-grid-pic">
+                        {% image 'bundles/goldtaskapp/images/iteam2.jpg' output='/images/iteam2.jpg' %}
+                        <a href="#"><img src="{{ asset_url }}" alt="Jewel Street" title="Tool" /></a>
+                            {% endimage %}						
+                    </div>
+                    <div class="content-top-grid-title">
+                        
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                
+                <div class="clear"> </div>
+            </div>
+            <div class="content-top-grid">
+                <div class="content-top-grid-header">
+                    <div class="content-top-grid-pic">
+                        {% image 'bundles/goldtaskapp/images/iteam3.jpg' output='/images/iteam3.jpg' %}
+                        <a href="#"><img src="{{ asset_url }}" alt="Jewel Street" title="iteam3" /></a>
+                            {% endimage %}						
+                    </div>
+                    <div class="content-top-grid-title">
+                       
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                
+                <div class="clear"> </div>
+            </div>
+            <div class="clear"> </div>
+        </div>
+    </div>
+    <div class="clear"> </div>
+    <div class="boxs">
+        <div class="wrap">
+            <div class="section group">
+                <div class="grid_1_of_3 images_1_of_3">
+                    <h3>WELCOME!</h3>
+                    <span>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod.</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed in reprehenderit adipisicing elit, sed in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Sed ut nim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,  pariatur?</p>
+                    <p>perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo e</p>
+                    <p>dolor sit amet, consectetur adipisicing elit, sed in reprehenderit adipisicing elit, sed in reprehenderit in voluptate velit esse cillum </p>
+                    <div class="button"><span><a href="#">Read More</a></span></div>
+                </div>
+                <div class="grid_1_of_3 images_1_of_3">
+                    <h3>ABOUT US</h3>
+                    <span>Lorem ipsum dolor sit amet conse ctetur adipisicing elit,</span>
+                    <p>in voluptate Lorem ipsum, in voluptate velit esse cillum dolore eu fugiat amet conse ctetur adipisicing elit nulla pariatur.</p>
+                    <span>Lorem ipsum dolor sit, fugiat nulla pariatur</span>
+                    <p>fugiat nulla Lorem ipsum dolor sit amet, consectetur adipisicing elitamet conse ctetur adipisicing elit, fugiat nulla pariatur.</p>
+                    <span>Lorem ipsum dolor sit amet cons,</span>
+                    <p>consectetur Lorem ipsum dolor sit amet, consectetur adipisicing elit, in voluptate velit esse cillu.</p>
+                    <span>Lorem ipsum dolor sit amet conse ctetur adipisicing elit,</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisorem ipsum dolor sit amet, consectetur adipiicing elit, in voluptate.</p>
+
+                    <div class="button"><span><a href="#">Read More</a></span></div>
+                </div>
+                <div class="grid_1_of_3 images_1_of_3">
+                    <h3>OUR SERVICES</h3>
+                    <ul>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Conse ctetur adipisicing</a></li>
+                        <li><a href="#">Elit sed do eiusmod tempor</a></li>
+                        <li><a href="#">Incididunt ut labore</a></li>
+                        <li><a href="#">Et dolore magna aliqua</a></li>
+                        <li><a href="#">Ut enim ad minim veniam</a></li>
+                        <li><a href="#">Quis nostrud exercitation</a></li>
+                        <li><a href="#">Ullamco laboris nisi</a></li>
+                        <li><a href="#">Ut aliquip ex ea commodo</a></li>
+                    </ul>
+                    <div class="button"><span><a href="#">Read More</a></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+goldtask\Bundle\AppBundle\Entity\clockindetails:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userid:
+            type: integer
+        officesId:
+            type: integer
+            column: offices_id
+        startDate:
+            type: datetime
+            column: start_date
+        endDate:
+            type: datetime
+            column: end_date
+        sessionIds:
+            type: string
+            column: session_ids
+        isStatus:
+            type: integer
+            column: is_status
+        createdBy:
+            type: integer
+            column: created_by
+        createdOn:
+            type: datetime
+            column: created_on
+        updatedBy:
+            type: integer
+            column: updated_by
+        updatedOn:
+            type: datetime
+            column: updated_on
+    lifecycleCallbacks: {  }

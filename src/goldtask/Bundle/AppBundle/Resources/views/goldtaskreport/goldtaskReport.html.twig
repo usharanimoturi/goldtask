@@ -1,0 +1,374 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Jewel Street::GOLD TASK REPORT{% endblock %}
+{% block jsscript %}
+    <style>
+        #loader {
+            position:fixed;
+     left: 50%;
+     top:  50%;     
+     margin-left: -32px;
+     margin-top:  -32px;
+        }
+.dataTables_filter {
+     display: none;
+}
+table {
+max-width: none !important;
+}
+    </style>
+    <script type="text/javascript">
+        $(function() { 
+var userid = $('#assign_user').val();
+           /* if(userid!=0){
+                $("#loader").css("display", "block");
+            var adminRedirection = $('#adminRedirection').val();
+            var patid = $('#assign_pat_id').val();
+            var officeId = $('#assign_offices_id').val();
+            var maotob = $('#as_maotob').val();
+            var goldtasktransid = $('#assign_transid').val();
+            var tmp = userid.concat('-'+patid+'-'+officeId+'-'+maotob+'-'+goldtasktransid+'-'+adminRedirection);
+	$('#myModalLabel').html('goldtask Report');
+	//$('#myModal').modal({backdrop:'static',keyboard:false});
+	$('#myModal').modal('show');
+                        $.ajax({
+                                        url: "{{ path('goldtaskReportPatient') }}",
+                                        type: "POST",
+                                        datatype: "html",
+                                        data: {patinfo: tmp},
+                                        success: function(res){  
+                                            $("#loader").css("display", "none");
+                                            $(".modal-body").html("");
+                                            $(".modal-body").html(res);                                            
+                                            //$('#myModal').modal({backdrop:'static',keyboard:false});
+                                        }
+                                    });
+                                    }       */    
+			$(".assigned-error").hide();
+                        $("#datepicker").datepicker({  maxDate: new Date() });
+			$("#datepicker1").datepicker({  maxDate: new Date() });                             
+            $("#loader").css("display", "none");
+           /* $.ajax({
+                url: "{{ path('officeinsurancelist') }}",
+                type: "POST",                
+                datatype: "json",                
+                success: function(res){ 
+                    var insurance = res.substr(res.indexOf("~") + 1);
+                    var officeString = res.substr(0,res.indexOf('~'));
+                    var officeslist=officeString.split(","); 
+                    var insurancelist=insurance.split(",");*/
+                    
+                    $('#example1').dataTable({"bPaginate": false,"bInfo": false,"oLanguage":{
+      "sInfo": "",
+       "sLoadingRecords": "Please wait - loading..."
+    }}).columnFilter({
+                        sPlaceHolder: "head:before",
+			aoColumns: [  null,
+                                      null,
+				      null,
+				      null,                                      
+                                      null,
+                                      null,
+                                      null,
+                            //{ sSelector: "#officeFilter", type: "select", values: officeslist  },				      
+                                      null,
+                                      null,
+                                      null,
+                                      null,
+                                      null,
+                                      //{ sSelector: "#insuranceFilter", type: "select", values: insurancelist  },
+                                      null,
+                                      null,
+                                      null,
+                                      null
+				]
+
+		});
+                //}
+            //}); 
+            $(document).ajaxStart(function(){
+                $("#loader").css("display", "block");
+            });
+
+            $(document).ajaxComplete(function(){
+                $("#loader").css("display", "none");
+            });
+            $("#example1_filter").css("display", "none");
+            $( "#example1 tr:gt(20)" ).hide();
+            var track = 20;
+            var strack = 21;
+            $(window).scroll(function() { //detect page scroll          
+				if($(window).scrollTop() + $(window).height() == $(document).height()) {
+					track = parseInt(track)+10;
+					strack = parseInt(strack)+10;
+					//alert(track);              
+					   
+						 var $div2 = $("#loader");
+   if ($div2.is(":visible")) { return; }
+   $div2.show();
+   setTimeout(function() {
+       $div2.hide();
+   }, 1000);
+					   $( "#example1 tr:gt("+track+")" ).hide();
+					   $( "#example1 tr:lt("+strack+")" ).show();
+						//load data from the server using a HTTP POST request
+						//$("#loader").css("display", "none");                 
+				}
+			});
+        });
+        function pb_assigto1(userid, patid, officeId, mtb,intrid) {           
+            var adminRedirection = $('#adminRedirection').val();
+            var newvar = $('#usercount').val(); 
+            var maotob = mtb;
+            var goldtasktransid = intrid;  
+            var filfdate = $('#filfdate').val();
+            var filtdate = $('#filtdate').val();
+            var filbalancefrom = $('#filbalancefrom').val();
+            var filbalanceto = $('#filbalanceto').val();
+            var filofficetype = $('#filofficetype').val();
+            var filinsurancetype = $('#filinsurancetype').val();
+            var filcalltype = $('#filcalltype').val();
+            $("#loader").css("display", "block");
+	$('#myModalLabel').html('goldtask Report');
+	//$('#myModal').modal({backdrop:'static',keyboard:false});
+$('#myModal').modal('show');
+                $.ajax({
+                    url: "{{path('goldtaskReportAssignUser')}}",
+                    type: "post",
+                    data: 'filfdate=' + filfdate + '&filtdate=' + filtdate + '&filbalancefrom=' + filbalancefrom + '&filbalanceto=' + filbalanceto + '&filofficetype=' + filofficetype + '&filinsurancetype=' + filinsurancetype + '&filcalltype=' + filcalltype + '&user_id=' + userid + '&patid=' + patid + '&officeId=' + officeId+'&transid='+goldtasktransid,
+                    success: function(res) {                          
+                    if(res=="view"){                            
+                        var tmp = userid.concat('-'+patid+'-'+officeId+'-'+maotob+'-'+goldtasktransid+'-'+adminRedirection); 
+                        $.ajax({
+                                        url: "{{ path('goldtaskReportPatient') }}",
+                                        type: "POST",
+                                        datatype: "html",
+                                        data: {patinfo: tmp},
+                                        success: function(res){  
+                                            $("#loader").css("display", "none");
+                                            $(".modal-body").html("");
+                                            $(".modal-body").html(res);                                            
+                                            //$('#myModal').modal('show');
+                                        }
+                                    });			
+                    } else if(res=="assg"){
+                        $('#myModal').modal('hide');
+                        $(".assigned-error").show();
+                        $("html, body").animate({ scrollTop: 0 });
+                        setTimeout(function() {$(".assigned-error").fadeOut(1500);}, 5000);
+                    } else {
+                        parent.location.reload();
+
+                    }                                           
+                    },
+                    error: function() {
+                    }
+                });            
+        }
+                
+    </script>
+
+{% endblock %}
+{% block bodyheader %}
+    <section class="content-header">
+        <h1>
+            {% if currentRoute=="PendingBalanceAdminStaff" %} Staff - {% endif %} 
+            {% if currentRoute=="PendingBalanceAdminCallCenter" %} Call Center - {% endif %}
+            {% if user_role_id == 2 or user_role_id == 5 %} Call Center {% endif %} {% if user_role_id == 3 or user_role_id == 4 %} Staff {% endif %}<small>goldtask Report</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>			
+            {% if currentRoute=="PendingBalanceAdminStaff" %} <li><a href="#">Staff</a></li> {% endif %} 
+            {% if currentRoute=="PendingBalanceAdminCallCenter" %} <li><a href="#"> Call Center</a></li> {% endif %}
+            {% if user_role_id == 2 or user_role_id == 5 %}<li><a href="#"> Call Center </a></li>{% endif %} {% if user_role_id == 3 or user_role_id == 4 %} <li><a href="#">Staff</a></li> {% endif %}
+            <li class="active">goldtask Report</li>
+        </ol>
+    </section>
+{% endblock %}
+{% block body %}	
+    <!-- Main content -->
+    <section class="content">
+        <div class="row"> 
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="alert alert-danger alert-dismissable assigned-error" style="display:none;">
+							<i class="fa fa-ban"></i>
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<b>Alert!</b> Selected Task is already assigned to someone else. Please choose some other task.
+						</div>
+                    <div class="box-header">
+                        <h3 class="box-title"></h3>
+                        
+                    </div><!-- /.box-header -->
+                    <div class="box-body"> 
+						{% if user_role_id == 2 or user_role_id == 3 %}	
+                        <form role="form" name="pbalance" id="pbalance" method="post" action="{% if currentRoute=="goldtaskReportAdminCallCenter" %} {{ path('goldtaskReportAdminCallCenter') }} {% elseif currentRoute=="goldtaskReportAdminStaff" %} {{ path('goldtaskReportAdminStaff') }} {% else %}{{  path('goldtaskReportPatients')  }} {% endif %}">
+								
+								<div class="col-xs-3" class="form-control" style="width:10% !important;padding-left:5px !important;">
+                                   <input class="form-control datepicker" placeholder="From Date" name="fdate" id='datepicker' type="text" value="{{ fdate }}" required />
+                               </div>
+                               <div class="col-xs-3" class="form-control" style="width:10% !important;padding-left:5px !important;">
+                                   <input type="text" name="tdate" placeholder="To Date" class="datepicker1 form-control" id='datepicker1' value="{{ tdate }}" required />
+                               </div>
+                                                               <div class="col-xs-3" class="form-control" style="width:10% !important;padding-left:5px !important;">
+                                   <input type="text" name="balancefrom" placeholder="Balance From" class="form-control" id='balancefrom' value="{{ balancefrom }}"  />
+                               </div>
+                                                               <div class="col-xs-3" class="form-control" style="width:10% !important;padding-left:5px !important;">
+                                   <input type="text" name="balanceto" placeholder="Balance To" class="form-control" id='balanceto' value="{{ balanceto }}"  />
+                               </div>
+                               <div class="col-xs-3" class="form-control" style="width:15% !important;padding-left:5px !important;">
+                                   <select class="form-control" placeholder="Call Type" name="calltype" id="calltype" >
+                                                                <option value="">Call Type</option>
+                                                                <option value = '1' {% if calltype == 1 %} selected {% endif %}>Missed Appointment</option>
+						            	<option value = '2' {% if calltype == 2 %} selected {% endif %}>Outstanding Treatment</option>
+						            	<option value = '3' {% if calltype == 3 %} selected {% endif %}>Outstanding Balance</option>
+												</select>
+                               </div>
+                               <div class="col-xs-3" class="form-control" style="width:15% !important;padding-left:5px !important;">
+                                   <select class="form-control" placeholder="Office" name="officetype" id="officetype" >
+                                                                <option value="">Office</option>
+                                                                {% for offval in office_names_info %}
+                                                                <option value = {{ offval['id'] }} {% if offval['id'] == officetype %} selected {% endif %}>{{ offval['name'] }}</option>						            	
+								{% endfor %}</select>
+                               </div> 
+                                <div class="col-xs-3" class="form-control" style="width:20% !important;padding-left:5px !important;">
+                                   <select class="form-control" placeholder="Insurance" name="insurancetype" id="insurancetype" >
+                                                                <option value="">Insurance</option>
+                                                                {% for insval in insurance_info %}
+                                                                <option value = '{{ insval['in_name'] }}' {% if insval['in_name'] == insurancetype %} selected {% endif %}>{{ insval['in_name'] }}</option>						            	
+								{% endfor %}</select>
+                               </div>
+                               <div class="col-xs-3" class="form-control" style="width:5% !important;padding-left:5px !important;">
+                                   <button type="submit" class="btn btn-primary" value="Generate" name="submit" id="submit" >Generate</button>
+                               </div>
+					</form><br/><br/><br/>                                                                                      {% endif %}          
+                        
+                        <input type='hidden' name='adminRedirection' value={{ adminRedirection }} id='adminRedirection'>
+                        <input type='hidden' name='assign_user' value={{ assign_user[0]['assigned_to'] }} id='assign_user'>
+                        <input type='hidden' name='assign_transid' value={{ assign_user[0]['id'] }} id='assign_transid'>
+                        <input type='hidden' name='assign_offices_id' value={{ assign_user[0]['offices_id'] }} id='assign_offices_id'>
+                        <input type='hidden' name='assign_pat_id' value={{ assign_user[0]['pat_id'] }} id='assign_pat_id'>
+                        <input type='hidden' name='as_maotob' value={{ assign_user[0]['as_maotob'] }} id='as_maotob'>  #}
+                        
+                        <input type='hidden' name='filfdate' value={{ fdate }} id='filfdate'>
+                        <input type='hidden' name='filtdate' value={{ tdate }} id='filtdate'>
+                        <input type='hidden' name='filbalancefrom' value={{ balancefrom }} id='filbalancefrom'>
+                        <input type='hidden' name='filbalanceto' value={{ balanceto }} id='filbalanceto'>
+                        <input type='hidden' name='filofficetype' value={{ officetype }} id='filofficetype'>
+                        <input type='hidden' name='filinsurancetype' value='{{ insurancetype }}' id='filinsurancetype'>
+                        <input type='hidden' name='filcalltype' value={{ calltype }} id='filcalltype'>
+                        
+                        {#<input type='hidden' name='usercount' value={{ session_user_count }} id='usercount'>
+						<br><br><br>						
+                        <table id="example1" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>                                    
+                                    <th>First Name</th>
+                                    <th>Last Name</th> 
+                                    <th>Family</th>
+                                    <th>PR</th>
+                                    <th>Office</th>
+                                    <th>MA</th>
+                                    <th>Employer</th>
+                                    <th>First Visit</th>
+                                    <th>Last Visit</th>
+                                    <th>Missed</th>
+                                    <th>Insurance Carrier</th>
+                                    <th>Cov $</th>
+                                    {#<th>Used $</th>
+                                    <th>Rem $</th>
+                                    <th>Ded $</th>#}
+                                    <th>Guarantor</th>
+                                    <th>#Ref</th>
+                                    {#<th>Missed Appointment</th>
+                                    <th>Outstanding Treatment</th>
+                                    <th>Outstanding Balance</th>
+                                    <!--<th>Call Status</th>
+                                    <th>Actions</th>#}
+                                    <th>Call Type</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            
+                            {% set foo = 1 %}
+                                <tbody>
+                                    {% for values in results %}                                        
+                                                               <tr {#{% if values['assigned_to']!=0 and values['assigned_to']!=userid %}bgcolor="#FF0000"{% endif %}#} onClick = 'pb_assigto1("{{ userid }}","{{ values['patient_id'] }}", "{{ values['officeid'] }}","{{ values['missed_appointment']}}{{values['outstanding_treatment']}}{{values['outstanding_balance'] }}","{{ values['id'] }}")' >                                                                        <td>{{ foo }}</td>                                                                        
+                                                                        <td>{{ values['first_name']|title }}</td>
+                                                                        <td>{{ values['last_name']|title }}</td>
+                                                                        <td><div data-toggle="tooltip" data-placement="left" title="{{values['groupname'] }}">{{ values['FamilyCNT'] }}</div></td>
+                                                                        <td>{% if values['privacyalert_id']!='0' %}<div data-toggle="tooltip" data-placement="left" title="{{values['privacynote'] }}"><i class="fa fa-users"></i></div>
+{% else %}
+ {% image 'bundles/goldtaskapp/images/Closeicon.png' output='No Data' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="No Privacy Alerts" border="0" title="No Privacy Alerts" />                                                                        	
+                                                                        {% endimage %}
+
+ {% endif %}</td>
+                                                                        <td>{{ values['legal_name']|title }}</td>
+                                                                        <td>{% if values['descript']!='' %}<div data-toggle="tooltip" data-placement="left" title="{{values['descript'] }}"><i class="fa fa-users"></i></div>{% endif %}</td>
+                                                                        <td>{{ values['employer']|title }}</td>
+                                                                        {#<td>{{ values['schedule_date'] }{% if  values['assigned_to'] !='N/A' %}{{ values['assigned_to'] }}{% endif %}}</td>#}                                                                      
+                                                                <td>{{ values['first_visit_date'] }}</td>
+                                                                <td>{{ values['last_visit_date'] }}</td>
+                                                                <td>{% if  values['last_missed_appointment'] !='N/A' %}{{ values['last_missed_appointment'] }}{% endif %}</td>
+                                                                <td>{{ values['primary_insurance_carrier_name'] }}</td>
+                                                                <td>{{ values['maxcovperson'] }}</td>
+                                                                {#<td></td>
+                                                                <td></td>
+                                                                <td></td>#}
+                                                                <td>{{ values['gurname']|title }}</td>
+                                                                <td><div data-toggle="tooltip" data-placement="left" title="{{ values['referral_list']|title }}">{{ values['referral_count'] }}</div></td>
+                                                                {#<td>{% if  values['missed_appointment'] =='1' %}{% image 'bundles/goldtaskapp/images/checked.gif' output='View Patient' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="missed appointment" border="0" title="missed appointment" />                                                                        	
+                                                                        {% endimage %} {% else %}
+                                                                        {% image 'bundles/goldtaskapp/images/cancel.png' output='View Patient' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="missed appointment" border="0" title="missed appointment" />                                                                        	
+                                                                        {% endimage %}
+                                                                        {% endif %}</td>
+                                                                <td>{% if  values['outstanding_treatment'] =='1' %}{% image 'bundles/goldtaskapp/images/checked.gif' output='View Patient' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="missed appointment" border="0" title="missed appointment" />                                                                        	
+                                                                        {% endimage %} {% else %}
+                                                                        {% image 'bundles/goldtaskapp/images/cancel.png' output='View Patient' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="missed appointment" border="0" title="missed appointment" />                                                                        	
+                                                                        {% endimage %}
+                                                                        {% endif %}</td>
+                                                                <td>{% if  values['outstanding_balance'] =='1' %}{% image 'bundles/goldtaskapp/images/checked.gif' output='View Patient' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="missed appointment" border="0" title="missed appointment" />                                                                        	
+                                                                        {% endimage %} {% else %}
+                                                                        {% image 'bundles/goldtaskapp/images/cancel.png' output='View Patient' %}									                                                                        
+                                                                            <img src="{{ asset_url }}" width="10" height="10" alt="missed appointment" border="0" title="missed appointment" />                                                                        	
+                                                                        {% endimage %}
+                                                                        {% endif %}</td>
+                                                                <td>{{ values['patient_status'] }}</td>                                                                
+                                                                <td>                                                                    
+                                                                    {% if (useridname == values['assigned_to']) %}
+                                                                        {% image 'bundles/goldtaskapp/images/view.png' output='View Patient' %}									
+                                                                        <a href="{{ path('goldtaskReportPatient',{'patinfo':userid ~ "-"~values.patient_id ~"-"~ values.officeid ~"-"~ adminRedirection}) }}">
+                                                                            <img src="{{ asset_url }}" width="20" height="20" alt="View Patient Details" border="0" title="View Patient Details" />
+                                                                        </a>	
+                                                                        {% endimage %}                                                                                                                                                                                                                  
+                                                                    {% else %}
+                                                                        {% image 'bundles/goldtaskapp/images/assign.jpg' %}									
+                                                                        <a href="javascript:void(0);" onClick = 'pb_assigto1("{{ userid }}","{{ values['patient_id'] }}", "{{ values['officeid'] }}")'>
+                                                                            <i class="fa fa-users"></i>
+                                                                        </a>	
+                                                                        {% endimage %}    
+                                                                    {% endif %}                                                                                                                                                                                                                                                                                         
+                                                                </td>#}
+                                                                <td>{% if values['missed_appointment']==1 %}Missed Appointment{%elseif values['outstanding_treatment']==1 %}Treatment{%elseif values['outstanding_balance']==1 %}Balance{% endif %}</td>
+                                                                <td>{% if values['call_status']==3 %}Reset{%elseif values['call_status']==2 %}ReScheduled{%elseif values['call_status']==1 %}Completed{% endif %}</td>
+                                                                </tr>                                                                
+                                                                {% set foo = foo+1 %}                                                                    
+                                                                        {% endfor %}
+                                                                            </tbody>
+                                                                        </table>
+                                                                            <span id="loader"><img src='{{ asset('bundles/goldtaskapp/images/') ~ '/' ~ 'busy.gif' }}' ></span>
+                                                                    </div>
+                                                                </div><!-- /.box-body -->
+                                                            </div><!-- /.box -->
+                                                        </div>
+                                                    </section><!-- /.content -->
+                                                    
+{% endblock %}
+

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <title>{% block title %}Jewel Street:HOME{% endblock %}</title>
+        {% stylesheets 'bundles/goldtaskapp/css/bootstrap.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/dataTables.bootstrap.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/datepicker.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/bootstrap-timepicker.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}        
+        {% stylesheets 'http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/font-awesome.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/morris.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/bootstrap3-wysihtml5.min.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+        {% stylesheets 'bundles/goldtaskapp/css/AdminLTE.css' filter="cssrewrite" %}			
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}		
+        {% javascripts 'bundles/goldtaskapp/js/jquery.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}  
+        {% javascripts 'bundles/goldtaskapp/js/jquery.validate.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/bootstrap.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/bootstrap-datepicker.js' %}	
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/bootstrap-timepicker.min.js' %}	
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}                  
+        {% javascripts 'bundles/goldtaskapp/js/jquery.dataTables.js' %}	
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/dataTables.bootstrap.js' %}	
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}  
+        {% javascripts 'bundles/goldtaskapp/js/jquery.dataTables.columnFilter.js' %}	
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/metisMenu.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/bootstrap3-wysihtml5.all.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/morris.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/raphael-min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% javascripts 'bundles/goldtaskapp/js/accord.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}	    
+
+        <script>jQuery.noConflict();</script>
+        <script>
+            $(function() {
+                $('#side-menu').metisMenu();
+            });
+            $(document).ready(function() {
+                
+               /*$.fn.readonlyfn({
+                    $(this).attr('readonly', true);
+                });*/
+        $(".datepicker").attr('readonly', true);
+        $("#datepicker").attr('readonly', true);
+        $(".datepicker1").attr('readonly', true);
+        $("#datepicker1").attr('readonly', true);                
+                $('#side-menu').metisMenu();
+                $(window).bind("load resize", function() {
+				//$('.dropdown-menu').addClass('collapse');
+                
+                    topOffset = 50;
+                    width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+                    if (width < 768) {
+                        $('div.navbar-collapse').addClass('collapse');
+                        topOffset = 100; // 2-row-menu
+                    } else {
+                        $('div.navbar-collapse').removeClass('collapse');
+                    }
+
+                    height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+                    height = height - topOffset;
+                    if (height < 1)
+                        height = 1;
+                    if (height > topOffset) {
+                        $("#page-wrapper").css("min-height", (height) + "px");
+                    }
+                });
+
+                var url = window.location;
+                var element = $('ul.nav a').filter(function() {
+                    return this.href == url;
+                }).addClass('active').parent().parent().addClass('in').parent();
+                if (element.is('li')) {
+                    element.addClass('active');
+                }
+            });
+        </script>
+        <style>
+            .sidebar .sidebar-nav.navbar-collapse {
+                padding-right: 0;
+                padding-left: 0;
+            }
+
+            .sidebar .sidebar-search {
+                padding: 15px;
+            }
+
+            .sidebar ul li {
+                border-bottom: 1px solid #e7e7e7;
+            }
+
+            .sidebar ul li a.active {
+                background-color: #eee;
+            }
+
+            .sidebar .arrow {
+                float: right;
+            }
+
+            .sidebar .fa.arrow:before {
+                content: "\f104";
+            }
+
+            .sidebar .active>a>.fa.arrow:before {
+                content: "\f107";
+            }
+
+            .sidebar .nav-second-level li,
+            .sidebar .nav-third-level li {
+                border-bottom: 0!important;
+            }
+
+            .sidebar .nav-second-level li a {
+                padding-left: 37px;
+            }
+
+            .sidebar .nav-third-level li a {
+                padding-left: 52px;
+            }
+            .sidebar {
+                margin-top: 16px;
+                position: absolute;
+                width: 219px;
+                z-index: 1;
+            }
+            .required{
+                color: red;
+            }
+            .dataTables_empty{
+                text-align: center !important;		
+            }
+			.navbar-right {
+				margin-right: 20px !important;
+			}
+			.navbar-nav > .active > a {
+				background-color:none !important;
+			}
+			.left-side {
+				min-height: 0% !important;
+			}
+			.navbar-nav > .active > a {
+				background-color: #367fa9 !important;
+			}
+        </style>
+    {% block jsscript %}{% endblock %}
+</head>
+<body class="pace-done skin-blue">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="{{ app.request.getSchemeAndHttpHost() }}/goldtask" class="logo">Jewel Street</a>			      
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation"> 
+			<div class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">          
+						<a href="{{ app.request.getSchemeAndHttpHost() }}/goldtask" class="navbar-btn sidebar-toggle"><i class="fa fa-home"></i></a>
+					</div>        
+					<div class="navbar-collapse collapse navigacija navbar-ex1-collapse">
+						<ul id="menu-header" class="nav navbar-nav navbar-left">
+							{% if app.session.get('userroleid')==1 %}
+							<li id="menu-item-174" class="menu-item-174"><a href="{{ path('goldtaskReportPatients') }}">Seller Report</a></li>
+							<li id="menu-item-174" class="menu-item-174"><a href="{{ path('userslist') }}">Sellers</a></li>
+							<li id="menu-item-174" class="menu-item-174"><a href="{{ path('officeslist') }}">Shops</a></li>
+                                                        
+                                                        <li id="menu-item-174" class="menu-item-174 dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Reports<span class="caret"></span></a>
+								<ul role="menu" class=" dropdown-menu">
+									<li id="menu-item-345" class="menu-item-345"><a href="{{ path('goldtask_missed_appointment_report') }}">Received Appointments</a></li>									
+									<li id="menu-item-343" class="menu-item-343"><a href="{{ path('goldtask_missed_app_report') }}">AVG Work Hours</a></li>													
+								</ul>
+							</li>
+							
+							
+							{% endif %}
+							{% if app.session.get('userroleid')==2 or app.session.get('userroleid')==3 or app.session.get('userroleid')==4 or app.session.get('userroleid')==5 %}								
+                                                                <li id="menu-item-175" class="menu-item-174"><a href="{{ path('goldtaskReportPatients') }}">goldtask Report</a></li>								
+                                                                <li id="menu-item-174" class="menu-item-174 dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Reports<span class="caret"></span></a>
+								<ul role="menu" class=" dropdown-menu">
+									<li id="menu-item-345" class="menu-item-345"><a href="{{ path('goldtask_missed_appointment_report') }}">Reports</a></li>
+								</ul>
+							</li>
+							
+							
+							{% endif %}
+							{% if app.session.get('userroleid')==2 or app.session.get('userroleid')==3 %}																									
+							{% endif %}
+								
+						</ul>
+						<!-- Sidebar toggle button--> 
+						<ul class="nav navbar-nav navbar-right">
+							<!-- User Account: style can be found in dropdown.less -->
+							<li class="dropdown user user-menu">							
+								{% if app.session.get('username') == '' %}							
+									<a href="{{ path('login') }}">
+										<i class="glyphicon glyphicon-user"></i>
+										<span>Login<i class="caret"></i></span>
+									</a>								
+								{% endif %}
+								{% if app.session.get('username') != '' %}
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="glyphicon glyphicon-user"></i>
+										<span>{{ app.session.get('username') }}<i class="caret"></i></span>
+									</a>						
+									<ul class="dropdown-menu">
+										<!-- User image -->
+										<li class="user-header bg-light-blue">
+											{% image 'bundles/goldtaskapp/images/avatar6.jpg' output='/images/avatar6.jpg' %}
+											<a href="{{ path('changepassword') }}"><img src="{{ asset_url }}" alt="goldtask" title="goldtask" class="img-circle" width="100" /></a>
+												{% endimage %}											
+											<p>
+												{{ app.session.get('user_name') }} - {{ app.session.get('userRoleName') }} 
+												<small>Member since </small>
+											</p>
+										</li> 
+										<!-- Menu Body -->
+										<li class="user-body">
+											<div class="col-xs-12 text-center">	
+												<a href="{{ path('changepassword') }}">Change Password</a>
+											</div>																			
+										</li>									
+										<!-- Menu Footer-->
+										<li class="user-footer">
+											<div class="pull-left">
+												<a href="{{ path('myprofile') }}" class="btn btn-default btn-flat">Profile</a>
+											</div>
+											<div class="pull-right">
+												<a href="{{ path('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+											</div>
+										</li>
+									</ul>
+								{% endif %}								
+							</li>
+						</ul>
+					</div> 
+				</div>
+			</div>            
+		</nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            {% if app.session.get('username') != '' %}
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    {% if app.session.get('username') != '' %}
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                {% image 'bundles/goldtaskapp/images/avatar6.jpg' output='/images/avatar6.jpg' %}
+                                <img src="{{ asset_url }}" class="img-circle" alt="User Image" />
+                                {% endimage %}	                            
+                            </div>						
+                            <div class="pull-left info">
+                                <p>Hello, {{ app.session.get('user_name') }}</p>
+                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            </div>						
+                        </div> 
+                    {% endif %}
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+					{% set items = { 'PendingBalanceAdminCallCenter': 'Outstanding Balance', 'cmmissedappointment': 'Missed Appointments', 'treatment_callcenter': 'Outstanding Treatments', 'PendingBalanceAdminCallCenter': 'Outstanding Balance', 'smmissedappointment': 'Missed Appointments',  
+		'treatment_staff': 'Outstanding Treatments', 'PendingBalanceAdminStaff': 'Outstanding Balance','ReceivedAppointments': 'Received Appointments','ReceivedProductivity': 'Received Productivity','ScheduledAppointments':'Scheduled Appointments' } %}
+                    {% for key, value in items %}	
+						{% if key != app.request.attributes.get('_route') %}							
+							<div class="navbar-default sidebar" role="navigation">
+								<div class="sidebar-nav navbar-collapse">
+									<ul class="nav" id="side-menu">								
+										{% set items = { 'myprofile': 'My Profile', 'usersview': 'Seller View', 'usersupdate': 'Seller Update', 'register': 'Seller Registration', 'userslist': 'Sellers', 
+				'officeslist': 'Shops', 'addOffice': 'Add Shop', 'officeupdate': 'Update Shop', 'officeview': 'View Shop',
+				'changepassword': 'Change Password' } %}
+										{% for key, value in items %}	
+											{% if key == app.request.attributes.get('_route') %}
+												<li  class="active"><a href="{{ app.request.getSchemeAndHttpHost() }}/goldtask/web/app_dev.php/{{ key }}"><i class="fa fa-th"></i> {{ value }} </a></li>
+											{% endif %}
+										{% endfor %}                                                       
+									</ul>	
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+                </section> 
+            {% endif %} 
+        </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+        {% block bodyheader %}{% endblock %}                 
+		</aside><!-- /.right-side -->
+		{% block body %}{% endblock %}
+</div><!-- ./wrapper -->
+
+<!-- add new calendar event modal -->
+</body>
+</html>

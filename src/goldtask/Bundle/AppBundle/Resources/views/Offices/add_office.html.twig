@@ -1,0 +1,96 @@
+{% extends "::index.html.twig" %}
+{% block title %}Jewel Street::SHOP ADD{% endblock %}
+{% block jsscript %}
+	{% javascripts 'bundles/goldtaskapp/js/jquery.validate.js' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(function() {
+			$.validator.addMethod("alphanumeric", function(value, element) {
+				return this.optional(element) || value == value.match(/^[a-zA-Z ]+[a-zA-Z0-9.&-]*$/);
+			});
+		
+			$.validator.addMethod("ipaddress", function(value, element) {
+				return this.optional(element) || value == value.match(/^(?!0)(?!.*\.$)(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/);
+			});		
+
+			// Setup form validation
+			$("#form_sample_1").validate({
+				// Specify the validation rules
+				errorElement: 'span',
+				rules: {
+					'form[name]': {
+						required: true,
+						alphanumeric: true
+					},
+					'form[officeIpNumber]': {
+						required: true,
+						ipaddress: true
+					}
+				},
+				messages: {
+				   
+					'form[name]': {
+						required: "Please enter office name.",
+						alphanumeric: "Please enter office name."
+						  },
+					'form[officeIpNumber]': {
+						required: "Please enter office IP address.",
+						ipaddress: "Please enter valid IP address."
+						 }
+					 },
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+		});
+    </script>
+	<style >
+        .error{color:#f56954 !important;font-size:14px;margin-left: 15px;}
+        .form-control {float:left !important; width:300px;margin-left: 13px; margin-top: -7px;}
+        .col-xs-5{width: 100%}
+	</style>
+{% endblock %}
+{% block bodyheader %}
+	<section class="content-header">
+		<h1>Office</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#"> Shop</a></li>
+			<li class="active">Add</li>
+		</ol>
+	</section>
+	<section class="content">	
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Add</h3>
+						<div class="muted pull-left" style="float:right !important;padding-top:10px !important;padding-right:10px !important;"><a class="btn btn-primary" href="{{ path('officeslist') }}" style="color:white !important;"><i class="fa fa-arrow-left"></i>Back</a></div>
+					</div><!-- /.box-header -->					
+					{{ form_start(form, { 'attr': { 'id': 'form_sample_1', 'class': 'form-horizontal', validate: 'validate' } }) }}						
+						<div class="box-body">
+							<p class="margin">Office name<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.name,{'attr': {'class': 'form-control', 'required': 'required'} }) }}
+								</div>
+							</div>							
+							<p class="margin">Office Ip<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.officeIpNumber,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.submit,{'attr': {'class': 'btn btn-primary'}} ) }}
+								</div>
+							</div>	
+                        </div>							
+					{{ form_end(form) }}				
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,191 @@
+goldtask_app_homepage:
+    pattern:  /
+    defaults: { _controller: goldtaskAppBundle:Default:index }
+
+register:
+    pattern: /register
+    defaults: { _controller: goldtaskAppBundle:Register:register }
+
+about:
+    pattern: /about
+    defaults: { _controller: goldtaskAppBundle:Default:about }
+
+article:
+    pattern: /article
+    defaults: { _controller: goldtaskAppBundle:Default:article }
+
+services:
+    pattern: /services
+    defaults: { _controller: goldtaskAppBundle:Default:services }
+
+news:
+    pattern: /news
+    defaults: { _controller: goldtaskAppBundle:Default:news }
+
+contact:
+    pattern: /contact
+    defaults: { _controller: goldtaskAppBundle:Default:contact }
+
+article:
+    pattern: /article
+    defaults: { _controller: goldtaskAppBundle:Default:article }
+
+login:
+    pattern: /login
+    defaults: { _controller: goldtaskAppBundle:Register:login }
+
+changepassword:
+    pattern: /changepassword
+    defaults: { _controller: goldtaskAppBundle:Register:changePassword }
+
+forgotpassword:
+    pattern: /forgotpassword
+    defaults: { _controller: goldtaskAppBundle:Register:forgotPassword }
+
+myprofile:
+    pattern: /myprofile
+    defaults: { _controller: goldtaskAppBundle:Register:myprofile }
+
+userslist:
+    pattern: /userslist
+    defaults: { _controller: goldtaskAppBundle:Register:usersList }
+clockinList:
+    pattern: /clockinList
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:clockinList }
+clockOut:
+    pattern: /clockOut
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:clockOut }
+usersupdate:
+    pattern: /usersupdate/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersUpdate }
+
+usersdelete:
+    pattern: /usersdelete/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersDelete }
+    
+usersactive:
+    pattern: /usersactive/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersActive }
+
+usersinactive:
+    pattern: /usersinactive/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersInactive }
+
+usersblocked:
+    pattern: /sellersblocked/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersBlocked }
+
+usersunblocked:
+    pattern: /sellersunblocked/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersUnblocked }
+
+usersview:
+    pattern: /usersview/{id}
+    defaults: { _controller: goldtaskAppBundle:Register:usersView }
+
+changepassword:
+    pattern: /changepassword
+    defaults: { _controller: goldtaskAppBundle:Register:changepassword }
+
+resetpassword:
+    pattern: /resetpassword
+    defaults: { _controller: goldtaskAppBundle:Register:resetpassword }	
+logout:
+    pattern: /logout
+    defaults: { _controller: goldtaskAppBundle:Register:logout }
+addOffice:
+    pattern: /addOffice
+    defaults: { _controller: goldtaskAppBundle:Offices:addOffice }
+officeslist:
+    pattern: /officeslist
+    defaults: { _controller: goldtaskAppBundle:Offices:officeslist }
+officeview:
+    pattern: /officeslist/{id}
+    defaults: { _controller: goldtaskAppBundle:Offices:officeslist }
+officeupdate:
+    pattern: /officeupdate/{id}
+    defaults: { _controller: goldtaskAppBundle:Offices:officeupdate }
+officedelete:
+    pattern: /officedelete/{id}
+    defaults: { _controller: goldtaskAppBundle:Offices:officedelete }	
+captcha:
+    pattern:  /captcha
+    defaults: { _controller: "goldtaskAppBundle:Register:captcha" }
+user_data_export:
+    pattern: /user_data_export
+    defaults: { _controller: goldtaskAppBundle:Reports:user_data_export }
+OverallDataExport:
+    pattern: /OverallDataExport
+    defaults: { _controller: goldtaskAppBundle:Reports:OverallDataExport }
+total_user_calls_csv:
+    path:     /total_user_calls_csv
+    defaults: { _controller: goldtaskAppBundle:Reports:total_user_calls_csv }	
+username_finding:
+    pattern: /username_finding
+    defaults: { _controller: goldtaskAppBundle:Register:username_finding }
+username_email_finding:
+    pattern: /username_email_finding
+    defaults: { _controller: goldtaskAppBundle:Register:username_email_finding }
+
+managerslist:
+    pattern:	/managerslist
+    defaults: { _controller: goldtaskAppBundle:Register:managerslist }
+users_count_report:
+    pattern: /ReceivedProductivity
+    defaults: { _controller: goldtaskAppBundle:Reports:users_count_report }
+
+individualUsers:
+    path:  /individualUsers
+    defaults: { _controller: goldtaskAppBundle:Reports:individualUsers }
+
+officelist:
+    pattern: /officelist
+    defaults: { _controller: goldtaskAppBundle:Outstanding:officelist }
+wrong:
+    pattern: /wrong
+    defaults: { _controller: goldtaskAppBundle:Outstanding:wrong}
+goldtaskReportReschedule:
+    pattern: /goldtaskrescheduleDate
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskrescheduleDate }
+goldtaskReportAdminStaff:
+    pattern: /goldtaskAdminStaff
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskAdminStaff }
+goldtaskReportAdminCallCenter:
+    pattern: /goldtaskAdminCallCenter
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskAdminCallCenter }
+goldtaskReportPatients:
+    pattern: /goldtaskReport
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskReport }
+goldtaskReportPatient:
+    pattern: /goldtaskviewReport
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskviewReport }
+goldtaskReportUpdateStatus:
+    pattern: /goldtaskupdateStatus
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskupdateStatus }
+goldtaskassignUser:
+    pattern: /goldtaskassignUser
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:goldtaskassignUser }    
+goldtask_missed_appointment_report:
+    pattern: /goldtask_ReceivedAppointments
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_missed_appointment_report }
+goldtask_users_count_report:
+    pattern: /goldtask_ReceivedProductivity
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_users_count_report }
+goldtask_missed_app_report:
+    pattern: /goldtask_ScheduledAppointments
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_missed_app_report }
+goldtask_MissedappidDataExport:
+    pattern: /goldtask_MissedappidDataExport
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_MissedappidDataExport }
+goldtask_users_count_report:
+    pattern: /goldtask_ReceivedProductivity
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_users_count_report }
+goldtask_UserappidDataExport:
+    pattern: /goldtask_UserappidDataExport
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_UserappidDataExport }    
+goldtask_user_data_export:
+    pattern: /goldtask_user_data_export
+    defaults: { _controller: goldtaskAppBundle:Reports:goldtask_user_data_export }
+officeinsurancelist:
+    pattern: /officeinsurancelist
+    defaults: { _controller: goldtaskAppBundle:goldtaskReport:officeinsurancelist }    

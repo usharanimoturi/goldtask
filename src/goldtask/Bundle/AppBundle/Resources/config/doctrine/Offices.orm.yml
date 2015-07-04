@@ -1,0 +1,61 @@
+goldtask\Bundle\AppBundle\Entity\Offices:
+    type: entity
+    table: offices
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+        legalName:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+            column: legal_name
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: created_by
+        createdOn:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_on
+        modifiedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: modified_by
+        modifiedOn:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: modified_on
+        officeIpNumber:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+            column: office_ip_number
+        isActive:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_active
+    lifecycleCallbacks: {  }

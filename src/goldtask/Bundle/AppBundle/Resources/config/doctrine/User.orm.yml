@@ -1,0 +1,137 @@
+goldtask\Bundle\AppBundle\Entity\User:
+    type: entity
+    table: user
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userRoleId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: user_role_id
+        parentRoleId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: parent_role_id
+        isParent:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_parent
+        username:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+        password:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        firstName:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: last_name
+        email:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        mobile:
+            type: string
+            nullable: false
+            length: 15
+            fixed: false
+            comment: ''
+        state:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        city:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+        address:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            comment: ''
+        photoPath:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: photo_path
+        createdBy:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: created_by
+        createdOn:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_on
+        modifiedBy:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: modified_by
+        modifiedOn:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: modified_on
+        isActive:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_active
+        isBlocked:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_blocked
+        counter:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        ipAddress:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+            column: ip_address
+    lifecycleCallbacks: {  }

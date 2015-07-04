@@ -1,0 +1,33 @@
+goldtask\Bundle\AppBundle\Entity\OfficesUsers:
+    type: entity
+    table: offices_users
+    indexes:
+        office_usersFK_idx:
+            columns:
+                - user_id
+        officeFK_idx:
+            columns:
+                - offices_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: user_id
+        officesId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: offices_id
+    lifecycleCallbacks: {  }

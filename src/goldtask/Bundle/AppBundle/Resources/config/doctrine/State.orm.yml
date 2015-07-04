@@ -1,0 +1,55 @@
+goldtask\Bundle\AppBundle\Entity\State:
+    type: entity
+    table: state
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        stateName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: state_name
+        stateCode:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: state_code
+        isActive:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: is_active
+        createdBy:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: created_by
+        createdOn:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_on
+        modifiedBy:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: modified_by
+        modifiedOn:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: modified_on
+    lifecycleCallbacks: {  }

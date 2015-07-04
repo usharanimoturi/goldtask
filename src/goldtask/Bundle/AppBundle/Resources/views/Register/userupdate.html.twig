@@ -1,0 +1,199 @@
+{% extends "::index.html.twig" %}
+{% block title %}JEWEL STREET:USER UPDATE{% endblock %}
+{% block jsscript %}
+	
+    <script type='text/javascript'>						
+        $(function() {
+			$.validator.addMethod("alpha", function(value, element) {
+				return this.optional(element) || value == value.match(/^[a-zA-Z ]*$/);
+			});
+			$.validator.addMethod("ipaddress", function(value, element) {
+				return this.optional(element) || value == value.match(/^(?!0)(?!.*\.$)(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/);
+			});
+			
+			// Setup form validation
+			$("#form_sample_1").validate({
+				// Specify the validation rules
+				errorElement: 'span',
+				 errorPlacement: function(error, element) {
+				if (element.attr("name") == "selectItemform[officesId][]" ) {
+				error.insertAfter("#uofficeerror");
+				}else {
+				error.insertAfter(element);
+				}
+				},
+				rules: {
+					'form[officesId][]': {
+						required: true
+					},
+					'form[ipAddress]': {
+                                                required: false,
+						ipaddress: true
+					},
+					'form[firstName]': {
+						required: true,
+						alpha: true
+					},
+					'form[lastName]': {
+						required: true,
+						alpha: true
+					},
+					'form[mobile]': {
+						required: true,
+						minlength: 10,
+						maxlength: 10
+					},
+					'form[address]': {
+						required: true,
+						minlength: 8,
+						maxlength: 50
+					},
+					'form[city]': {
+						required: true,
+						alpha: true,
+						minlength: 5,
+						maxlength: 15
+					},
+					'form[state]': {
+						required: true,
+						range: [1, 23]
+					}
+				},
+				messages: {
+			'form[ipAddress]': {
+					required: "Please provide ipAddress.",
+                    ipaddress: "Please Enter office Ip Address."
+            },		
+		   'form[firstName]':{
+                    required: "Please provide first name.",
+					alpha: "Please Enter only alphabets.",
+                    minlength: "Your first name must be at least 8 characters long",
+					maxlength: "Your first name must not exceed 15 characters long"
+		   },
+		   'form[lastName]':{
+                    required: "Please provide last name.",
+					alpha: "Please Enter only alphabets.",
+                    minlength: "Your last name must be at least 8 characters long",
+					maxlength: "Your last name must not exceed 15 characters long"
+		   },
+		   'form[state]':{
+                    required: "Please select State.",
+                    range: " Select a valid State"
+                   
+           },
+		   'form[city]':{
+                    required: "Please provide city name.",
+					alpha: "Please Enter alphabets.",
+                    minlength: "Your city name must be at least 5 characters long",
+					maxlength: "Your city name must not exceed 15 characters long"
+		    },
+			'form[mobile]':{
+                    required: "Please provide mobile number.",
+                    minlength: "Your mobile number must be at least 10 characters long",
+					maxlength: "Your mobile number must not exceed 10 characters long",
+					number: "Please enter only numerical values"
+		    },
+			'form[address]':{
+                    required: "Please provide address.",
+                    minlength: "Your address must be at least 3 characters long",
+					maxlength: "Your address must not exceed 15 characters long"
+            },
+			'form[officesId][]': {
+						required: "Please Select Office"
+			}
+            },
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+		});
+	</script>
+<style>
+        .error{color:red;font-size:14px;margin-left: 15px;}
+        .form-control {float:left !important; width:300px;margin-left: 13px; margin-top: -7px;}
+        .col-xs-5{width: 100%}
+		.ms-choice{margin: -3px 0px 0px -7px !important;width: 105% !important;}
+</style>
+{% endblock %}
+{% block bodyheader %}
+	<section class="content-header">
+		<h1>Users</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#">Seller</a></li>
+			<li class="active">Update</li>
+		</ol>
+	</section>
+	<!-- Main content -->
+	<section class="content">	
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Update</h3>
+						<div class="muted pull-left" style="float:right !important;padding-top:10px !important;padding-right:10px !important;"><a class="btn btn-primary" href="{{ path('userslist') }}" style="color:white !important;"><i class="fa fa-arrow-left"></i>Back</a></div>
+					</div><!-- /.box-header -->
+					{{ form_start(form,{ 'attr': { 'role': 'form', 'class': 'form-horizontal', 'id':'form_sample_1', 'autocomplete':'off' } }) }}						
+							<p class="margin">First Name<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.firstName,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>							
+							<p class="margin">Last Name<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.lastName,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>
+							<p class="margin">Mobile<span class="required">*</span></p>					
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.mobile,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>							
+							<p class="margin">Ip Address</p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.ipAddress,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>
+							<p class="margin">Offices<span class="required">*</span></p>                                                
+								<div class="form-group">                                                                
+									<div class="col-xs-5">	
+									<input type="hidden" name="hidOffice" id="hidOffice" value="{{ office }}" />									
+									{{ form_widget(form.officesId,{'attr': {'class': 'form-control', 'required': 'required'} }) }}
+									<span class="help-inline" id="uofficeerror"></span>
+							        </div>
+							    </div>
+							<p class="margin">Address<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.address,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>
+							<p class="margin">City<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.city,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>
+							<p class="margin">State<span class="required">*</span></p>					
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.state,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>							
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.update,{'attr': {'class': 'btn btn-primary'}} ) }}
+								</div>
+							</div>	
+                        </div>							
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+

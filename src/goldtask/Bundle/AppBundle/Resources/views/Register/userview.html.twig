@@ -1,0 +1,70 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}JEWEL STREET:SELLER VIEW{% endblock %}
+
+{% block bodyheader %}
+    <section class="content-header">
+        <h1>Users</h1>
+        <ol class="breadcrumb">
+                <li><a href="{{ path('goldtaskReportPatients') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="{{ path('userslist') }}"><i class="fa fa-dashboard"></i> Sellers</a></li>
+                <li class="active">View</li>
+        </ol>
+    </section>
+	<!-- block -->
+    <!-- Main content -->
+	<section class="content">	
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">View</h3>
+						<div class="muted pull-left" style="float:right !important;padding-top:10px !important;padding-right:10px !important;"><a class="btn btn-primary"href="{{ path('userslist') }}" style="color:white !important;"><i class="fa fa-arrow-left"></i>Back</a></div>
+					</div><!-- /.box-header -->
+					<div class="box-body">																				
+						<table class="table table-bordered table-striped">
+							<tbody>
+								<tr>
+									<td>First name</td>
+									<td>{{ data.firstName }}</td>										
+								</tr>
+								<tr>
+									<td>Last name</td>
+									<td>{{ data.lastName }}</td>
+								</tr>
+								<tr>
+									<td>Email</td>
+									<td>{{ data.email }}</td>
+								</tr>
+								<tr>
+									<td>Offices</td>
+									<td>{{ officeData }}</td>
+								</tr>
+								<tr>
+									<td>Role</td>
+									<td>{% if data.userRoleId==1 %} Admin {% elseif data.userRoleId==2 %} Call Center Manager {% elseif data.userRoleId==3 %}  Staff Manager {% elseif data.userRoleId==4 %}
+									 Staff User {% elseif data.userRoleId==5 %}
+									 Call Center User {% else %} None {% endif %}
+									</td>
+								</tr>
+								<tr>
+									<td>Contact</td>
+									<td>{{ data.mobile }}</td>
+								</tr>									
+								<tr>
+									<td>Status</td>
+									<td>{% if data.isActive == 1 %}
+											Active
+										 {% else %}
+											Inactive
+									   {% endif %}
+									</td>
+								</tr>
+							</tbody>
+						</table>			
+					</div>	
+			   </div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

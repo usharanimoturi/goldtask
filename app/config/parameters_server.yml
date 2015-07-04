@@ -1,0 +1,19 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 173.193.151.202
+    database_port: null
+    database_name: ROXANNA_TEST
+    database_user: saritha
+    database_password: chinna@Sep17
+    mailer_transport: smtp
+    mailer_host: smtp.gmail.com
+    mailer_user: test@optimalchain.com
+    mailer_password: 0pt1m4114
+    mailer_port: 465
+    mailer_encryption:  ssl 
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: false
+    debug_redirects: false
+    use_assetic_controller: true

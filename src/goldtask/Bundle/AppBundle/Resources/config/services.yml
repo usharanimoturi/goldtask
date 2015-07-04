@@ -1,0 +1,7 @@
+parameters:
+#    dentrix_app.example.class: Dentrix\Bundle\AppBundle\Example
+
+services:
+#    dentrix_app.example:
+#        class: %dentrix_app.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
