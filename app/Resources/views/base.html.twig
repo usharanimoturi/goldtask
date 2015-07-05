@@ -69,13 +69,13 @@
                     {% if app.session.get('username') != '' %}
                     <li class="dropdown messages-menu">
                         {% if app.session.get('userroleid')==1 %}
-                        <a href="{{ path('goldtaskReportPatients') }}" class="dropdown-toggle">
+                        <a href="{{ path('addOffice') }}" class="dropdown-toggle">
                             <i class="fa fa-globe"></i>
                             <span class="label label-success">goldtask Report</span>
                         </a>
                          {% endif %}
                         {% if app.session.get('userroleid')==2 or app.session.get('userroleid')==3 or app.session.get('userroleid')==4 or app.session.get('userroleid')==5 %}
-                        <a href="{{ path('goldtaskReportPatients') }}" class="dropdown-toggle">
+                        <a href="{{ path('addOffice') }}" class="dropdown-toggle">
                             <i class="fa fa-globe"></i>
                             <span class="label label-success">goldtask Report</span>
                         </a>

@@ -227,10 +227,10 @@ class RegisterController extends Controller {
         $user_role_id = $session->get('userroleid');
         if ($user_id != "" && $user_id != 0) {
             if ($user_role_id == 1) {
-                return $this->redirect($this->generateUrl('goldtaskReportPatients'));
+                return $this->redirect($this->generateUrl('login'));
             }
             if ($user_role_id == 2 || $user_role_id == 5 || $user_role_id == 3 || $user_role_id == 4) {
-                return $this->redirect($this->generateUrl('goldtaskReportPatients'));
+                return $this->redirect($this->generateUrl('clockinlist'));
             }
         }
         $ipaddress = $request->getClientIp();
@@ -274,6 +274,14 @@ class RegisterController extends Controller {
                         }
                     }
                 } */
+				
+				$offices_query = "SELECT offices_id from offices_users where user_id=$userID";
+						
+				$offices_conn = $em->getConnection()->prepare($offices_query);
+				$offices_conn->execute();
+				$offices_info = $offices_conn->fetchAll();
+				$session->set('officesid', $offices_info[0]['offices_id']);
+				
                 $blocked_status = $repository[0]->getIsBlocked();
                 $active_status = $repository[0]->getIsActive();
                 if ($active_status == 0 || $active_status == '') { // Check User Blocked Staus
@@ -369,10 +377,10 @@ class RegisterController extends Controller {
                 $session->set('userRoleName', $userRoleName);
 
                 if ($user_role_id == 1) {
-                    return $this->redirect($this->generateUrl('goldtaskReportPatients'));
+                    return $this->redirect($this->generateUrl('clockinlist'));
                 }
                 if ($user_role_id == 2 || $user_role_id == 5 || $user_role_id == 3 || $user_role_id == 4) {
-                    return $this->redirect($this->generateUrl('goldtaskReportPatients'));
+                    return $this->redirect($this->generateUrl('clockinlist'));
                 }
             } else { // User name or Password wrong
                 $user_check = $this->getDoctrine()->getRepository('goldtaskAppBundle:User')->findBy(array('username' => $username));
@@ -1241,5 +1249,7 @@ SQL;
         }
         return new Response(json_encode($users_managers_list));
     }
-
+	public function wrongAction(){
+            return $this->render('goldtaskAppBundle:Register:wrong.html.twig');
+    }
 }

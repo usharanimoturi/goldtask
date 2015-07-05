@@ -33,7 +33,10 @@ class clockindetails
      * @var \DateTime
      */
     private $endDate;
-
+	/**
+     * @var \decimal     
+     */
+    private $timeDiff;
     /**
      * @var integer
      */
@@ -166,7 +169,50 @@ class clockindetails
     {
         return $this->endDate;
     }
+	/**
+     * Set timeDiff
+     *
+     * @param \decimal $timeDiff
+     * @return clockindetails
+     */
+    public function settimeDiff($timeDiff)
+    {
+        $this->timeDiff = $timeDiff;
 
+        return $this;
+    }
+
+    /**
+     * Get timeDiff
+     *
+     * @return \DateTime 
+     */
+    public function gettimeDiff()
+    {
+        return $this->timeDiff;
+    }
+	/**
+     * Set weight
+     *
+     * @param \decimal $weight
+     * @return clockindetails
+     */
+    public function setweight($weight)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return \decimal 
+     */
+    public function getweight()
+    {
+        return $this->weight;
+    }
     /**
      * Set sessionIds
      *

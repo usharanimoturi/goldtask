@@ -19,6 +19,18 @@ goldtask\Bundle\AppBundle\Entity\clockindetails:
         endDate:
             type: datetime
             column: end_date
+        timeDiff:
+            type: decimal
+            nullable: false            
+            scale: 10
+            precision: 2
+            column: time_diff
+        weight:
+            type: decimal
+            nullable: false            
+            scale: 10
+            precision: 2
+            column: weight
         sessionIds:
             type: string
             column: session_ids

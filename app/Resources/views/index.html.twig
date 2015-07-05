@@ -198,32 +198,18 @@
 					</div>        
 					<div class="navbar-collapse collapse navigacija navbar-ex1-collapse">
 						<ul id="menu-header" class="nav navbar-nav navbar-left">
-							{% if app.session.get('userroleid')==1 %}
-							<li id="menu-item-174" class="menu-item-174"><a href="{{ path('goldtaskReportPatients') }}">Seller Report</a></li>
+							{% if app.session.get('userroleid')==1 %}							
 							<li id="menu-item-174" class="menu-item-174"><a href="{{ path('userslist') }}">Sellers</a></li>
 							<li id="menu-item-174" class="menu-item-174"><a href="{{ path('officeslist') }}">Shops</a></li>
-                                                        
-                                                        <li id="menu-item-174" class="menu-item-174 dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Reports<span class="caret"></span></a>
-								<ul role="menu" class=" dropdown-menu">
-									<li id="menu-item-345" class="menu-item-345"><a href="{{ path('goldtask_missed_appointment_report') }}">Received Appointments</a></li>									
-									<li id="menu-item-343" class="menu-item-343"><a href="{{ path('goldtask_missed_app_report') }}">AVG Work Hours</a></li>													
-								</ul>
+                            <li id="menu-item-174" class="menu-item-174 dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Reports<span class="caret"></span></a>
 							</li>
-							
-							
 							{% endif %}
 							{% if app.session.get('userroleid')==2 or app.session.get('userroleid')==3 or app.session.get('userroleid')==4 or app.session.get('userroleid')==5 %}								
-                                                                <li id="menu-item-175" class="menu-item-174"><a href="{{ path('goldtaskReportPatients') }}">goldtask Report</a></li>								
+                                                                								
                                                                 <li id="menu-item-174" class="menu-item-174 dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Reports<span class="caret"></span></a>
-								<ul role="menu" class=" dropdown-menu">
-									<li id="menu-item-345" class="menu-item-345"><a href="{{ path('goldtask_missed_appointment_report') }}">Reports</a></li>
-								</ul>
+								
 							</li>
-							
-							
-							{% endif %}
-							{% if app.session.get('userroleid')==2 or app.session.get('userroleid')==3 %}																									
-							{% endif %}
+							{% endif %}							
 								
 						</ul>
 						<!-- Sidebar toggle button--> 

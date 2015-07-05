@@ -69,7 +69,7 @@ class OfficesController extends Controller
 		}
 		 						
 			if($user_role_id!=1){
-				return $this->redirect($this->generateUrl('wrong'));
+				//return $this->redirect($this->generateUrl('wrong'));
 			}
         $offices = new Offices();		
 	    $em = $this->getDoctrine()->getManager();					
