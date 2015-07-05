@@ -1,0 +1,27 @@
+goldtask\Bundle\AppBundle\Entity\customers:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        customerName:
+            type: string
+            length: 255
+            column: customer_name
+        weightGrams:
+            type: string
+            length: 255
+            column: weight_grams
+        userid:
+            type: integer
+        createdBy:
+            type: integer
+            column: created_by
+        createdOn:
+            type: datetime
+            column: created_on
+    lifecycleCallbacks: {  }

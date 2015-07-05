@@ -1,0 +1,96 @@
+{% extends "::index.html.twig" %}
+{% block title %}Jewel Street::SHOP ADD{% endblock %}
+{% block jsscript %}
+	{% javascripts 'bundles/goldtaskapp/js/jquery.validate.js' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(function() {
+			$.validator.addMethod("alphanumeric", function(value, element) {
+				return this.optional(element) || value == value.match(/^[a-zA-Z ]+[a-zA-Z.&-]*$/);
+			});
+		
+			//$.validator.addMethod("grams", function(value, element) {
+			//	return this.optional(element) || value == value.match(/^[0-9.]$/);
+			//});		
+
+			// Setup form validation
+			$("#form_sample_1").validate({
+				// Specify the validation rules
+				errorElement: 'span',
+				rules: {
+					'form[customer_name]': {
+						required: true,
+						alphanumeric: true
+					},
+					'form[weight_grams]': {
+						required: true,
+						grams: true
+					}
+				},
+				messages: {
+				   
+					'form[customer_name]': {
+						required: "Please enter customer name.",
+						alphanumeric: "Please enter customer name."
+						  },
+					'form[weight_grams]': {
+						required: "Please enter Weight in Grms.",
+						grams: "Please enter valid Weight."
+						 }
+					 },
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+		});
+    </script>
+	<style >
+        .error{color:#f56954 !important;font-size:14px;margin-left: 15px;}
+        .form-control {float:left !important; width:300px;margin-left: 13px; margin-top: -7px;}
+        .col-xs-5{width: 100%}
+	</style>
+{% endblock %}
+{% block bodyheader %}
+	<section class="content-header">
+		<h1>Customer</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#"> Shop</a></li>
+			<li class="active">Add</li>
+		</ol>
+	</section>
+	<section class="content">	
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">Add</h3>
+						<div class="muted pull-left" style="float:right !important;padding-top:10px !important;padding-right:10px !important;"><a class="btn btn-primary" href="{{ path('clockoutlist') }}" style="color:white !important;"><i class="fa fa-arrow-left"></i>Back</a></div>
+					</div><!-- /.box-header -->					
+					{{ form_start(form, { 'attr': { 'id': 'form_sample_1', 'class': 'form-horizontal', validate: 'validate' } }) }}						
+						<div class="box-body">
+							<p class="margin">Customer name<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.customer_name,{'attr': {'class': 'form-control', 'required': 'required'} }) }}
+								</div>
+							</div>							
+							<p class="margin">Weight (in gms)<span class="required">*</span></p>						
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.weight_grams,{'attr': {'class': 'form-control'} }) }}
+								</div>
+							</div>
+							<div class="form-group">								
+								 <div class="col-xs-5">
+									{{ form_widget(form.submit,{'attr': {'class': 'btn btn-primary'}} ) }}
+								</div>
+							</div>	
+                        </div>							
+					{{ form_end(form) }}				
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

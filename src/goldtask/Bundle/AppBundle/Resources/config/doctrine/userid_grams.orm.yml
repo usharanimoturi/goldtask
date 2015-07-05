@@ -1,0 +1,29 @@
+goldtask\Bundle\AppBundle\Entity\userid_grams:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userId:
+            type: integer
+            column: user_id
+        officesId:
+            type: integer
+            column: offices_id
+        sellDate:
+            type: date
+            column: sell_date
+        weightGrams:
+            type: float
+            column: weight_grams
+        createdBy:
+            type: integer
+            column: created_by
+        createdOn:
+            type: datetime
+            column: created_on
+    lifecycleCallbacks: {  }
