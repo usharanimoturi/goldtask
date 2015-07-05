@@ -5,72 +5,94 @@ namespace goldtask\Bundle\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * clockindetails
+ * TrackingDetails
+ *
+ * @ORM\Table(name="tracking_details")
+ * @ORM\Entity
  */
-class clockindetails
+class TrackingDetails
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
-    /**
+	/**
      * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
-    private $userid;
-
+    private $userId;	
     /**
      * @var integer
+     *
+     * @ORM\Column(name="offices_id", type="integer", nullable=false)
      */
     private $officesId;
-
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="datetime", nullable=true)
      */
     private $startDate;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime", nullable=true)
      */
     private $endDate;
 	/**
-     * @var \decimal     
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_diff", type="datetime", nullable=false)
      */
-    private $timeDiff;
+    private $timeDiff;	
 	/**
-     * @var \weight     
+     * @var varchar
+     *
+     * @ORM\Column(name="session_id", type="varchar", nullable=false)
      */
-    private $weight;
+    private $sessionId;
+	private $weight;
+	/**
+     * @var integer
+     *
+     * @ORM\Column(name="is_status", type="tinyint", nullable=false)
+     */
+    private $isStatus;	
+   
     /**
      * @var integer
-     */
-    private $sessionIds;
-
-    /**
-     * @var integer
-     */
-    private $isStatus;
-
-    /**
-     * @var integer
+     *
+     * @ORM\Column(name="created_by", type="integer", nullable=false)
      */
     private $createdBy;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="created_on", type="datetime", nullable=false)
      */
     private $createdOn;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="updated_by", type="integer", nullable=true)
      */
     private $updatedBy;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="updated_on", type="datetime", nullable=true)
      */
-    private $updatedOn;
-
+    private $updatedOn;   
 
     /**
      * Get id
@@ -81,35 +103,34 @@ class clockindetails
     {
         return $this->id;
     }
-
-    /**
-     * Set userid
+     /**
+     * Set userId
      *
-     * @param integer $userid
-     * @return clockindetails
+     * @param integer $userId
+     * @return TrackingDetails
      */
-    public function setUserid($userid)
+    public function setUserId($userId)
     {
-        $this->userid = $userid;
+        $this->userId = $userId;
 
         return $this;
     }
 
     /**
-     * Get userid
+     * Get userId
      *
      * @return integer 
      */
-    public function getUserid()
+    public function getUserId()
     {
-        return $this->userid;
+        return $this->userId;
     }
-
-    /**
+    
+     /**
      * Set officesId
      *
      * @param integer $officesId
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setOfficesId($officesId)
     {
@@ -127,12 +148,11 @@ class clockindetails
     {
         return $this->officesId;
     }
-
     /**
      * Set startDate
      *
      * @param \DateTime $startDate
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setStartDate($startDate)
     {
@@ -155,7 +175,7 @@ class clockindetails
      * Set endDate
      *
      * @param \DateTime $endDate
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setEndDate($endDate)
     {
@@ -176,8 +196,8 @@ class clockindetails
 	/**
      * Set timeDiff
      *
-     * @param \decimal $timeDiff
-     * @return clockindetails
+     * @param \DateTime $timeDiff
+     * @return TrackingDetails
      */
     public function settimeDiff($timeDiff)
     {
@@ -195,13 +215,58 @@ class clockindetails
     {
         return $this->timeDiff;
     }
+
+    /**
+     * Set moduleType
+     *
+     * @param integer $moduleType
+     * @return TrackingDetails
+     */
+    public function setModuleType($moduleType)
+    {
+        $this->moduleType = $moduleType;
+
+        return $this;
+    }
+
+    /**
+     * Get moduleType
+     *
+     * @return integer 
+     */
+    public function getmoduleType()
+    {
+        return $this->moduleType;
+    }
+	 /**
+     * Set sessionId
+     *
+     * @param varchar $sessionId
+     * @return TrackingDetails
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
+
+        return $this;
+    }
+
+    /**
+     * Get sessionId
+     *
+     * @return varchar 
+     */
+    public function getSessionId()
+    {
+        return $this->sessionId;
+    }
 	/**
      * Set weight
      *
      * @param \decimal $weight
-     * @return clockindetails
+     * @return TrackingDetails
      */
-    public function setweight($weight)
+    public function setWeight($weight)
     {
         $this->weight = $weight;
 
@@ -212,38 +277,15 @@ class clockindetails
      *
      * @return \decimal 
      */
-    public function getweight()
+    public function getWeight()
     {
         return $this->weight;
     }
     /**
-     * Set sessionIds
-     *
-     * @param string $sessionIds
-     * @return clockindetails
-     */
-    public function setSessionIds($sessionIds)
-    {
-        $this->sessionIds = $sessionIds;
-
-        return $this;
-    }
-
-    /**
-     * Get sessionIds
-     *
-     * @return string 
-     */
-    public function getSessionIds()
-    {
-        return $this->sessionIds;
-    }
-
-    /**
      * Set isStatus
      *
      * @param integer $isStatus
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setIsStatus($isStatus)
     {
@@ -266,7 +308,7 @@ class clockindetails
      * Set createdBy
      *
      * @param integer $createdBy
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setCreatedBy($createdBy)
     {
@@ -289,7 +331,7 @@ class clockindetails
      * Set createdOn
      *
      * @param \DateTime $createdOn
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setCreatedOn($createdOn)
     {
@@ -312,7 +354,7 @@ class clockindetails
      * Set updatedBy
      *
      * @param integer $updatedBy
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setUpdatedBy($updatedBy)
     {
@@ -335,7 +377,7 @@ class clockindetails
      * Set updatedOn
      *
      * @param \DateTime $updatedOn
-     * @return clockindetails
+     * @return TrackingDetails
      */
     public function setUpdatedOn($updatedOn)
     {
@@ -343,6 +385,7 @@ class clockindetails
 
         return $this;
     }
+
     /**
      * Get updatedOn
      *
@@ -352,4 +395,5 @@ class clockindetails
     {
         return $this->updatedOn;
     }
+      
 }

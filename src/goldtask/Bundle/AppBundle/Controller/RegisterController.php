@@ -119,7 +119,7 @@ class RegisterController extends Controller {
                     $em->flush();
                 }
 
-                $body = $this->messegeCreateAccount($name, $username, $_password, '');
+               /* $body = $this->messegeCreateAccount($name, $username, $_password, '');
                 $subject = "Account details for " . $name . " at goldtask";
                 $mail = new phpmailer();
                 $from = "test@optimalchain.com";
@@ -140,7 +140,7 @@ class RegisterController extends Controller {
                     $name = "Registration has been done successfully.";
                 } else {
                     $name = "Email sending problem.Please try again!";
-                }
+                }*/
                 return $this->redirect($this->generateUrl('userslist'));
             } else {
                 $name = "error";

@@ -129,3 +129,6 @@ managerslist:
 wrong:
     pattern: /wrong
     defaults: { _controller: goldtaskAppBundle:Register:wrong}
+sample_code_get_json:
+    pattern: /sample_code_get_json
+    defaults: { _controller: goldtaskAppBundle:Clockin:sample_code_get_json}

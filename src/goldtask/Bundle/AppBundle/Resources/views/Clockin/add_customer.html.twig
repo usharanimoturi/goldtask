@@ -5,6 +5,31 @@
 		<script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>
+	$(document).ready(function() {
+    $.ajax({
+      type: 'get',
+      url: {{ path('sample_code_get_json') }},
+      beforeSend: function() {
+        // before send the request, displays a "Loading..." messaj in the element where the response will be placed
+        $('#resp').html('Loading...');
+      },
+	  dataType: 'json',
+      success: function(response) {
+        $('#resp').html('');
+		}
+		});
+		
+		$.getJSON('data.json', function(data) {
+        var output="<ul>";
+        for (var i in data.MetalList) {
+            output+="<li>" + data.MetalList[i].Name + " " + data.MetalList[i].Symbol + "--" + data.MetalList[i].Type+ "--" + data.MetalList[i].Active+"</li>";
+        }
+
+        output+="</ul>";
+		$('#resp').append(output);        
+  });
+		
+	});
         $(function() {
 			$.validator.addMethod("alphanumeric", function(value, element) {
 				return this.optional(element) || value == value.match(/^[a-zA-Z ]+[a-zA-Z.&-]*$/);
@@ -66,10 +91,13 @@
 				<div class="box">
 					<div class="box-header">
 						<h3 class="box-title">Add</h3>
-						<div class="muted pull-left" style="float:right !important;padding-top:10px !important;padding-right:10px !important;"><a class="btn btn-primary" href="{{ path('clockoutlist') }}" style="color:white !important;"><i class="fa fa-arrow-left"></i>Back</a></div>
+						<div class="muted pull-left" style="float:right !important;padding-top:10px !important;padding-right:10px !important;"><a class="btn btn-primary" href="{{ path('clockinlist') }}" style="color:white !important;"><i class="fa fa-arrow-left"></i>Back</a>
+						<a class="btn btn-primary" href="{{ path('clockoutlist') }}" style="color:white !important;"><i class="fa fa-plus"></i>Clock Out</a>
+						</div>
 					</div><!-- /.box-header -->					
 					{{ form_start(form, { 'attr': { 'id': 'form_sample_1', 'class': 'form-horizontal', validate: 'validate' } }) }}						
 						<div class="box-body">
+						<div id="resp">Here will be displayed the data from the Json file.</div><br />
 							<p class="margin">Customer name<span class="required">*</span></p>						
 							<div class="form-group">								
 								 <div class="col-xs-5">

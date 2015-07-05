@@ -1,0 +1,88 @@
+goldtask\Bundle\AppBundle\Entity\TrackingDetails:
+    type: entity
+    table: tracking_details
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: user_id        
+        officesId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: offices_id
+        startDate:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: end_date
+        timeDiff:
+            type: decimal
+            nullable: true
+            comment: ''
+            scale: 10
+            precision: 2
+            column: time_diff
+        weight:
+            type: decimal
+            nullable: true
+            comment: ''
+            scale: 10
+            precision: 2
+            column: weight
+        sessionId:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: session_id
+        isStatus:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: is_status
+        createdBy:
+            type: integer
+            nullable: false
+            length: 11
+            fixed: false
+            comment: ''
+            column: created_by
+        createdOn:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_on
+        updatedBy:
+            type: integer
+            nullable: true
+            length: 11
+            fixed: false
+            comment: ''
+            column: updated_by
+        updatedOn:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: updated_on
+        
+lifecycleCallbacks: {  }

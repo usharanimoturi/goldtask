@@ -4,9 +4,11 @@ goldtask\Bundle\AppBundle\Entity\clockindetails:
     id:
         id:
             type: integer
+            nullable: false
+            unsigned: false
             id: true
             generator:
-                strategy: AUTO
+            strategy: IDENTITY
     fields:
         userid:
             type: integer
@@ -21,13 +23,13 @@ goldtask\Bundle\AppBundle\Entity\clockindetails:
             column: end_date
         timeDiff:
             type: decimal
-            nullable: false            
+            nullable: true            
             scale: 10
             precision: 2
             column: time_diff
         weight:
             type: decimal
-            nullable: false            
+            nullable: true            
             scale: 10
             precision: 2
             column: weight
